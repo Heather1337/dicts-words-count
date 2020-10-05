@@ -1,4 +1,5 @@
-# put your code here.
+import string 
+
 def count_words(file):
     """
     Returns the count of all words in provided file argument. 
@@ -38,19 +39,22 @@ def count_words(file):
         were 1
         Ives? 1
     """
+    punc = ",.?"
 
     count_words = {}
     open_file = open(file)
     for line in open_file:
-        split_line = line.rstrip().split(' ')
+        split_line = line.rstrip().lower().split(' ')
+        print(split_line)
         for word in split_line:
-            count_words[word] = count_words.get(word, 0) + 1
+            stripped_word = word.rstrip(",.?")
+            count_words[stripped_word] = count_words.get(stripped_word, 0) + 1
 
     for word, count in count_words.items():
         print(word, count)
 
 count_words("test.txt")
 
-if __name__ == '__main__':
-    import doctest
-    doctest.testmod()
+# if __name__ == '__main__':
+#     import doctest
+#     doctest.testmod()
